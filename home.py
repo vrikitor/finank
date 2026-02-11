@@ -30,22 +30,16 @@ st.set_page_config(page_title="Finank Home", layout="wide", page_icon="💰")
 # Eu queria que os cartões de notícias tivessem um visual moderno e escuro.
 st.markdown("""
     <style>
-    /* Estilos Gerais */
-    /* Aqui eu mudo a cor de fundo dos números grandes (métricas) para destacar */
+    /* --- ESTILOS GERAIS (DESKTOP) --- */
     .stMetric { background-color: #1b1e23; padding: 15px; border-radius: 10px; border: 1px solid #30363d; }
-    
-    /* Cartões de Notícias: Fundo escuro com uma borda azul neon na esquerda */
     .news-card { background-color: #262730; padding: 15px; border-radius: 10px; margin-bottom: 10px; border-left: 4px solid #00D4FF; }
     .news-title { font-weight: bold; font-size: 1.1em; color: #fff; text-decoration: none; }
     .news-source { font-size: 0.8em; color: #b0b0b0; }
     
-    /* Etiquetas de Sentimento (Verde para bom, Vermelho para ruim) */
     .sentimento-positivo { color: #00ff41; font-weight: bold; border: 1px solid #00ff41; padding: 2px 6px; border-radius: 4px; font-size: 0.7em; }
     .sentimento-negativo { color: #ff2b2b; font-weight: bold; border: 1px solid #ff2b2b; padding: 2px 6px; border-radius: 4px; font-size: 0.7em; }
     .sentimento-neutro { color: #8b949e; border: 1px solid #8b949e; padding: 2px 6px; border-radius: 4px; font-size: 0.7em; }
 
-    /* CARTÕES PERSONALIZADOS (Para o Conversor de Moedas) */
-    /* Criei esses cartões na mão para ter controle total do tamanho e alinhamento */
     .custom-card {
         background-color: #1b1e23;
         padding: 15px;
@@ -58,22 +52,28 @@ st.markdown("""
         min-height: 100px;
     }
     .card-label { font-size: 14px; color: #8b949e; margin-bottom: 5px; }
-    .card-value { 
-        font-size: 20px; 
-        font-weight: bold; 
-        color: #ffffff; 
-        word-wrap: break-word; 
-        line-height: 1.2; 
-    }
-    /* Aquela setinha azul (➔) que fica no meio do conversor */
+    .card-value { font-size: 20px; font-weight: bold; color: #ffffff; word-wrap: break-word; line-height: 1.2; }
+    
     .seta-centro {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        height: 100%;
-        font-size: 24px;
-        color: #00D4FF;
-        margin-top: 25px; /* Ajuste visual para alinhar com o input */
+        display: flex; align-items: center; justify-content: center; height: 100%;
+        font-size: 24px; color: #00D4FF; margin-top: 25px;
+    }
+
+    /* --- 📱 O SEGREDO DO MOBILE (RESPONSIVIDADE) --- */
+    @media (max-width: 768px) {
+        /* Força as colunas a ficarem uma embaixo da outra */
+        div[data-testid="column"] {
+            width: 100% !important;
+            flex: 1 1 auto !important;
+            min-width: 100% !important;
+        }
+        
+        /* Ajusta a setinha do conversor para girar 90 graus no celular */
+        .seta-centro { margin-top: 5px; margin-bottom: 5px; transform: rotate(90deg); }
+        
+        /* Ajusta margens para não grudar */
+        .stMetric { margin-bottom: 10px; }
+        .custom-card { margin-bottom: 10px; min-height: auto; }
     }
     </style>
     """, unsafe_allow_html=True)
@@ -319,4 +319,5 @@ def renderizar_noticias(termo_busca):
 with tab_geral: renderizar_noticias("Mercado financeiro economia brasil hoje")
 with tab_acoes: renderizar_noticias("Ações bolsa de valores empresas brasil")
 with tab_cripto: renderizar_noticias("Mercado criptomoedas bitcoin hoje")
+
 with tab_fiis: renderizar_noticias("Fundos imobiliários IFIX notícias")
