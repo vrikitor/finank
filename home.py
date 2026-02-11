@@ -30,13 +30,16 @@ st.set_page_config(page_title="Finank Home", layout="wide", page_icon="💰")
 # Eu queria que os cartões de notícias tivessem um visual moderno e escuro.
 st.markdown("""
     <style>
-    /* --- ESTILOS GERAIS (DESKTOP) --- */
+    /* --- ESTILOS GERAIS --- */
+    /* Métricas Padrão */
     .stMetric { 
         background-color: #1b1e23; 
         padding: 15px; 
         border-radius: 10px; 
         border: 1px solid #30363d; 
     }
+    
+    /* Cartões de Notícias */
     .news-card { 
         background-color: #262730; 
         padding: 15px; 
@@ -47,48 +50,30 @@ st.markdown("""
     .news-title { font-weight: bold; font-size: 1.1em; color: #fff; text-decoration: none; }
     .news-source { font-size: 0.8em; color: #b0b0b0; }
     
+    /* Etiquetas de Sentimento */
     .sentimento-positivo { color: #00ff41; font-weight: bold; border: 1px solid #00ff41; padding: 2px 6px; border-radius: 4px; font-size: 0.7em; }
     .sentimento-negativo { color: #ff2b2b; font-weight: bold; border: 1px solid #ff2b2b; padding: 2px 6px; border-radius: 4px; font-size: 0.7em; }
     .sentimento-neutro { color: #8b949e; border: 1px solid #8b949e; padding: 2px 6px; border-radius: 4px; font-size: 0.7em; }
 
+    /* Cartões Personalizados (Conversor) */
     .custom-card {
         background-color: #1b1e23;
         padding: 15px;
         border-radius: 12px;
         border: 1px solid #30363d;
-        height: 100%;
+        /* IMPORTANTE: Mudei de height: 100% para min-height. Isso evita bugs no mobile. */
+        min-height: 120px; 
         display: flex;
         flex-direction: column;
         justify-content: center;
-        min-height: 100px;
     }
     .card-label { font-size: 14px; color: #8b949e; margin-bottom: 5px; }
     .card-value { font-size: 20px; font-weight: bold; color: #ffffff; word-wrap: break-word; line-height: 1.2; }
     
+    /* Seta do Conversor */
     .seta-centro {
         display: flex; align-items: center; justify-content: center; height: 100%;
         font-size: 24px; color: #00D4FF; margin-top: 25px;
-    }
-
-    /* --- 📱 CSS PARA CELULAR (RESPONSIVO) --- */
-    @media (max-width: 768px) {
-        /* Transforma colunas em linhas verticais */
-        [data-testid="column"] {
-            width: 100% !important;
-            flex: 1 1 auto !important;
-            min-width: 100% !important;
-        }
-        
-        /* Gira a seta no celular */
-        .seta-centro { 
-            margin-top: 5px; 
-            margin-bottom: 5px; 
-            transform: rotate(90deg); 
-        }
-        
-        /* Ajusta margens */
-        .stMetric { margin-bottom: 15px; }
-        .custom-card { margin-bottom: 15px; min-height: auto; }
     }
     </style>
     """, unsafe_allow_html=True)
@@ -336,4 +321,5 @@ with tab_acoes: renderizar_noticias("Ações bolsa de valores empresas brasil")
 with tab_cripto: renderizar_noticias("Mercado criptomoedas bitcoin hoje")
 
 with tab_fiis: renderizar_noticias("Fundos imobiliários IFIX notícias")
+
 
