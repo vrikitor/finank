@@ -31,8 +31,19 @@ st.set_page_config(page_title="Finank Home", layout="wide", page_icon="💰")
 st.markdown("""
     <style>
     /* --- ESTILOS GERAIS (DESKTOP) --- */
-    .stMetric { background-color: #1b1e23; padding: 15px; border-radius: 10px; border: 1px solid #30363d; }
-    .news-card { background-color: #262730; padding: 15px; border-radius: 10px; margin-bottom: 10px; border-left: 4px solid #00D4FF; }
+    .stMetric { 
+        background-color: #1b1e23; 
+        padding: 15px; 
+        border-radius: 10px; 
+        border: 1px solid #30363d; 
+    }
+    .news-card { 
+        background-color: #262730; 
+        padding: 15px; 
+        border-radius: 10px; 
+        margin-bottom: 10px; 
+        border-left: 4px solid #00D4FF; 
+    }
     .news-title { font-weight: bold; font-size: 1.1em; color: #fff; text-decoration: none; }
     .news-source { font-size: 0.8em; color: #b0b0b0; }
     
@@ -59,21 +70,25 @@ st.markdown("""
         font-size: 24px; color: #00D4FF; margin-top: 25px;
     }
 
-    /* --- 📱 O SEGREDO DO MOBILE (RESPONSIVIDADE) --- */
+    /* --- 📱 CSS PARA CELULAR (RESPONSIVO) --- */
     @media (max-width: 768px) {
-        /* Força as colunas a ficarem uma embaixo da outra */
-        div[data-testid="column"] {
+        /* Transforma colunas em linhas verticais */
+        [data-testid="column"] {
             width: 100% !important;
             flex: 1 1 auto !important;
             min-width: 100% !important;
         }
         
-        /* Ajusta a setinha do conversor para girar 90 graus no celular */
-        .seta-centro { margin-top: 5px; margin-bottom: 5px; transform: rotate(90deg); }
+        /* Gira a seta no celular */
+        .seta-centro { 
+            margin-top: 5px; 
+            margin-bottom: 5px; 
+            transform: rotate(90deg); 
+        }
         
-        /* Ajusta margens para não grudar */
-        .stMetric { margin-bottom: 10px; }
-        .custom-card { margin-bottom: 10px; min-height: auto; }
+        /* Ajusta margens */
+        .stMetric { margin-bottom: 15px; }
+        .custom-card { margin-bottom: 15px; min-height: auto; }
     }
     </style>
     """, unsafe_allow_html=True)
@@ -321,3 +336,4 @@ with tab_acoes: renderizar_noticias("Ações bolsa de valores empresas brasil")
 with tab_cripto: renderizar_noticias("Mercado criptomoedas bitcoin hoje")
 
 with tab_fiis: renderizar_noticias("Fundos imobiliários IFIX notícias")
+
